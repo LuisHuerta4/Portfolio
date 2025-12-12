@@ -39,6 +39,21 @@ const techList = [
         color: "#449d46",
         icon: "/svg/mongo-icon.svg",
     },
+    {
+        name: "TailwindCSS",
+        color: "#38b2ac",
+        icon: "/svg/tailwind-icon.svg",
+    },
+    {
+        name: "Typescript",
+        color: "#3178c6",
+        icon: "/svg/typescript-icon.svg",
+    },
+    {
+        name: "Node.js",
+        color: "#8cc84b",
+        icon: "/svg/node-icon.svg",
+    },
 ];
 
 export {
