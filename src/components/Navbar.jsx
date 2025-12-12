@@ -14,14 +14,13 @@ const Navbar = () => {
 
         navTween.fromTo("nav", { backgroundColor: "transparent" }, {
             backgroundColor: "#ebe6e1",
-            backgroundfilter: "blur(10px)",
             duration: 1,
             ease: "power1.inOut",
         });
     })
 
     return (
-        <nav>
+        <nav className="px-10">
             <div>
                 <a href="#home" className="font-display flex items-center gap-2">
                     <p>Luis' Portfolio</p>
