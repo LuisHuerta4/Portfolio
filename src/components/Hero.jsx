@@ -62,10 +62,10 @@ const Hero = () => {
                     LUIS <br /> HUERTA
                 </h1>
                 <div className="pl-6">
-                    <p className="hero-subtitle text-xl sm:text-2xl md:text-3xl mt-6 opacity-80 italic">
+                    <p className="hero-subtitle text-xl sm:text-2xl md:text-3xl mt-6 opacity-80 font-display italic">
                         Full-Stack Developer
                     </p>
-                    <p className="hero-location text-lg sm:text-xl mt-3 opacity-60">
+                    <p className="hero-location text-lg sm:text-xl mt-3 opacity-60 font-serif">
                         Based in Rialto, CA
                     </p>
                 </div>

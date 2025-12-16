@@ -56,7 +56,35 @@ const techList = [
     },
 ];
 
+const projects = [
+    {
+        id: "project-1",
+        name: "Project One",
+        image: "/images/Temp.png",
+        url: "https://project-one.com",
+        title: "Project 1 Title",
+        description: "This is project 1 description.",
+    },
+    {
+        id: "project-2",
+        name: "Project Two",
+        image: "/images/Temp.png",
+        url: "https://project-two.com",
+        title: "Project 2 Title",
+        description: "This is project 2 description.",
+    },
+    {
+        id: "project-3",
+        name: "Project Three",
+        image: "/images/Temp.png",
+        url: "https://project-three.com",
+        title: "Project 3 Title",
+        description: "This is project 3 description.",
+    }
+];
+
 export {
     navLinks,
-    techList
+    techList,
+    projects
 };
