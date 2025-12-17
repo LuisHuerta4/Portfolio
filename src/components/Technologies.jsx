@@ -55,13 +55,13 @@ const Technologies = () => {
     }, []);
 
     return (
-        <section id="technologies" className="py-32 bg-[#f7f4f1]">
+        <section id="technologies" className="py-32 bg-[#efeae4]">
             <div className="container mx-auto px-5">
-                <h2 className="text-4xl md:text-6xl font-display mb-12 font-bold">
+                <h2 className="text-4xl sm:text-5xl md:text-6xl tracking-[-0.02em] font-modern-negra mb-16">
                     Technologies I Use
                 </h2>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-15 p-5">
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-16 p-5">
                     {techList.map((tech, i) => (
                         <div
                             key={tech.name}
@@ -84,7 +84,7 @@ const Technologies = () => {
                             />
 
                             <div
-                                className="tech-label text-white text-sm font-sans font-bold px-4 py-1 mt-50"
+                                className="tech-label font-sans text-xs uppercase tracking-widest font-medium text-white/90 px-4 py-1 mt-50"
                                 style={{
                                     backgroundColor: tech.color,
                                     clipPath: "polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%)",

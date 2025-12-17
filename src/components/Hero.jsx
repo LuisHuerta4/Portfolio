@@ -54,18 +54,18 @@ const Hero = () => {
 
             {/* Hero text */}
             <div className="hero-text absolute -translate-y-[15%] z-10">
-                <p className="intro-text text-3xl sm:text-4xl md:text-5xl font-display italic mb-4">
+                <p className="intro-text text-3xl sm:text-4xl md:text-5xl font-sans italic mb-4 opacity-80 tracking-[0.1em]">
                     Hello, I'm
                 </p>
 
-                <h1 className="hero-title text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[11rem] font-serif font-bold inline-block px-4 pb-2 leading-none">
+                <h1 className="hero-title text-[4.5rem] sm:text-[6rem] md:text-[7.5rem] lg:text-[9rem] xl:text-[11rem] font-serif font-bold inline-block px-4 pb-2 leading-[0.9]">
                     LUIS <br /> HUERTA
                 </h1>
                 <div className="pl-6">
-                    <p className="hero-subtitle text-xl sm:text-2xl md:text-3xl mt-6 opacity-80 font-display italic">
+                    <p className="hero-subtitle text-lg sm:text-xl md:text-2xl mt-6 opacity-80 font-serif">
                         Full-Stack Developer
                     </p>
-                    <p className="hero-location text-lg sm:text-xl mt-3 opacity-60 font-serif">
+                    <p className="hero-location text-sm sm:text-base tracking-wide uppercase mt-2 opacity-50 font-sans">
                         Based in Rialto, CA
                     </p>
                 </div>
