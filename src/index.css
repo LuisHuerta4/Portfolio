@@ -42,7 +42,7 @@ html, body {
 
     .hero-bg::before {
         content: "";
-        @apply absolute inset-0 opacity-8 pointer-events-none;
+        @apply absolute inset-0 opacity-55 pointer-events-none;
         background-image: url('/images/hero-bg.png');
     }
 

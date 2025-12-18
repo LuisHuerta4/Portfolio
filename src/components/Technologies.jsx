@@ -55,9 +55,9 @@ const Technologies = () => {
     }, []);
 
     return (
-        <section id="technologies" className="py-32 bg-[#efeae4]">
+        <section id="technologies" className="py-32 bg-[#4f463e]">
             <div className="container mx-auto px-5">
-                <h2 className="text-4xl sm:text-5xl md:text-6xl tracking-[-0.02em] font-modern-negra mb-16">
+                <h2 className="text-[#f3f0ed] text-4xl sm:text-5xl md:text-6xl tracking-[-0.02em] font-modern-negra mb-16">
                     Technologies I Use
                 </h2>
 
