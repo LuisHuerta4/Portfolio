@@ -1,10 +1,26 @@
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800;9..144,900&family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap");
 
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Modern Negra";
+  src: url("/fonts/Modern Negra Demo.ttf") format("truetype");
+}
+
+html, body {
+  width: 100%;
+  background-color: #f3f0ed;
+  color: #3d3228;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  font-family: var(--font-sans);
+  letter-spacing: 0.01em;
+}
+
 @theme {
-  --font-display: "Fraunces", serif;  /* headings */
-  --font-sans: "Inter", sans-serif;   /* body */
+    --font-sans: "Mona Sans", sans-serif;
+    --font-modern-negra: "Modern Negra", serif;
+    --font-serif: "DM Serif Text", serif;
 }
 
 @utility flex-center {
@@ -26,7 +42,7 @@
 
     .hero-bg::before {
         content: "";
-        @apply absolute inset-0 opacity-8 pointer-events-none;
+        @apply absolute inset-0 opacity-55 pointer-events-none;
         background-image: url('/images/hero-bg.png');
     }
 
