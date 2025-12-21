@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Technologies from "./components/Technologies";
 import Projects from "./components/Projects";
+import Email from "./components/Email";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -14,6 +15,7 @@ function App() {
       <Hero />
       <Technologies />
       <Projects />
+      <Email />
     </main>
   );
 }
