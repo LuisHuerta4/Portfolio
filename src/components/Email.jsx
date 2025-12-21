@@ -9,6 +9,7 @@ const Email = () => {
         name: "",
         email: "",
         message: "",
+        company: "",
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState(null);
@@ -51,6 +52,11 @@ const Email = () => {
     const handleSubmit = async (e) => {
         if (isSubmitting) return;
         e.preventDefault();
+
+        if (formData.company) {
+            console.warn("Spam detected");
+            return;
+        }
         setIsSubmitting(true);
         setSubmitStatus(null);
 
@@ -66,7 +72,7 @@ const Email = () => {
                 import.meta.env.VITE_EMAIL_PUBLIC_KEY
             );
             setSubmitStatus("success");
-            setFormData({ name: "", email: "", message: "" });
+            setFormData({ name: "", email: "", message: "", company: "" });
         } catch (error) {
             console.error('EmailJS error:', error);
             setSubmitStatus("error");
@@ -90,6 +96,17 @@ const Email = () => {
                     </p>
 
                     <form onSubmit={handleSubmit} className="space-y-6">
+
+                        <input
+                            type="text"
+                            name="company"
+                            value={formData.company}
+                            onChange={handleChange}
+                            tabIndex="-1"
+                            autoComplete="off"
+                            className="hidden"
+                        />
+
                         <div className="form-group">
                             <label htmlFor="name" className="block text-sm font-medium mb-2">
                                 Name
