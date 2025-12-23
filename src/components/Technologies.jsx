@@ -55,23 +55,23 @@ const Technologies = () => {
     }, []);
 
     return (
-        <section id="technologies" className="py-32 bg-[#4f463e]">
-            <div className="container mx-auto px-5">
-                <h2 className="text-[#f3f0ed] text-4xl sm:text-5xl md:text-6xl tracking-[-0.02em] font-modern-negra mb-16">
+        <section id="technologies" className="py-16 sm:py-20 md:py-24 lg:py-32 bg-gradient-to-b from-[#d2ccc6] to-[#d4cdc5]">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 className="text-[#3d3228] text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl tracking-[-0.02em] font-modern-negra mb-10 sm:mb-12 md:mb-14 lg:mb-16">
                     Technologies I Use
                 </h2>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-16 p-5">
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-10 sm:gap-10 md:gap-15 lg:gap-16 p-3 sm:p-4 md:p-5">
                     {techList.map((tech, i) => (
                         <div
                             key={tech.name}
-                            className={`tech-card-${i} relative h-40 flex-center flex-col gap-3`}
+                            className={`tech-card-${i} relative h-32 sm:h-36 md:h-40 flex-center flex-col gap-2 sm:gap-3`}
                         >
                             <svg
-                                width="145"
-                                height="145"
+                                width="120"
+                                height="120"
                                 viewBox="0 0 300 300"
-                                className={`tech-shape-${i} transition-transform absolute`}x
+                                className={`tech-shape-${i} transition-transform absolute w-[100px] h-[100px] sm:w-[120px] sm:h-[120px] md:w-[145px] md:h-[145px]`}
                                 style={{ fill: tech.color }}
                             >
                                 <path d="M150 20c7 0 13 4 16 11l23 58 63 4c7 1 13 6 15 13s0 14-6 19l-52 39 19 61c2 7 0 15-6 20s-14 5-20 1l-52-35-52 35c-6 4-14 4-20-1s-8-13-6-20l19-61-52-39c-6-5-9-12-6-19s8-12 15-13l63-4 23-58c3-7 9-11 16-11z" />
@@ -80,11 +80,11 @@ const Technologies = () => {
                             <img
                                 src={tech.icon}
                                 alt={tech.name}
-                                className={`tech-logo-${i} w-16 absolute pointer-events-none`}
+                                className={`tech-logo-${i} w-12 sm:w-14 md:w-16 absolute pointer-events-none`}
                             />
 
                             <div
-                                className="tech-label font-sans text-xs uppercase tracking-widest font-medium text-white/90 px-4 py-1 mt-50"
+                                className="tech-label font-sans text-[10px] sm:text-xs uppercase tracking-widest font-medium text-white/90 px-3 sm:px-4 py-1 mt-40 md:mb-5 lg:mb-0 sm:mt-44 md:mt-51"
                                 style={{
                                     backgroundColor: tech.color,
                                     clipPath: "polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%)",

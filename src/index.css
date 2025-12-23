@@ -48,25 +48,36 @@ html, body {
 
     .hero-text {
         @apply 
-            left-[15%] top-[30%]
-            sm:left-[20%] sm:top-[45%] 
-            md:left-[24%] md:top-[42%] 
-            lg:left-[26%] lg:top-[37%] 
-            xl:left-[23%] xl:top-[38%] 
-            2xl:left-[30ch%] 2xl:top-[36%];
+            left-[8%] top-[32%]
+            sm:left-[12%] sm:top-[38%] 
+            md:left-[18%] md:top-[40%] 
+            lg:left-[22%] lg:top-[38%] 
+            xl:left-[20%] xl:top-[38%] 
+            2xl:left-[25%] 2xl:top-[36%];
     }
 
     .star-container {
         @apply 
-            left-[0%] top-[29%]
-            sm:left-[5%] sm:top-[43%] 
-            md:left-[7%] md:top-[40%] 
-            lg:left-[10%] lg:top-[36%] 
-            xl:left-[13%] xl:top-[36%] 
+            left-[-2%] top-[30%]
+            sm:left-[2%] sm:top-[36%] 
+            md:left-[5%] md:top-[38%] 
+            lg:left-[8%] lg:top-[36%] 
+            xl:left-[11%] xl:top-[36%] 
             2xl:left-[15%] 2xl:top-[34%];
 
         .star {
-            @apply w-30 sm:w-40 md:w-52 lg:w-65 xl:w-64 2xl:w-70 -mr-20 sm:-mr-25 md:-mr-30 lg:-mr-40 2xl:-mr-45;
+            @apply 
+                w-30 
+                sm:w-40 
+                md:w-45 
+                lg:w-65 
+                xl:w-60 
+                2xl:w-70 
+                -mr-20
+                sm:-mr-25 
+                md:-mr-30 
+                lg:-mr-40 
+                2xl:-mr-45;
         }
     }
 
@@ -74,19 +85,19 @@ html, body {
         @apply fixed z-50 w-full;
 
         div {
-            @apply flex md:flex-row flex-col md:justify-between items-center gap-5 py-5 lg:px-0 px-5 container mx-auto;
+            @apply flex md:flex-row flex-col md:justify-between items-center gap-4 sm:gap-5 py-4 sm:py-5 px-4 sm:px-6 lg:px-8 container mx-auto;
         }
 
         p {
-            @apply text-3xl -mb-2;
+            @apply text-2xl sm:text-3xl -mb-2;
         }
 
         a {
-            @apply cursor-pointer text-nowrap md:text-base text-sm;
+            @apply cursor-pointer text-nowrap text-sm md:text-base;
         }
 
         ul {
-            @apply flex-center lg:gap-12 gap-7;
+            @apply flex-center gap-6 sm:gap-8 lg:gap-12;
         }
     }
 }

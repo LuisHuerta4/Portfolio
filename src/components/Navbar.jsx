@@ -22,14 +22,14 @@ const Navbar = () => {
     return (
         <nav className="px-10">
             <div>
-                <a href="#home" className="font-display flex items-center gap-2">
+                <a href="#home" className="font-serif flex items-center gap-2">
                     <p>Luis' Portfolio</p>
                 </a>
 
                 <ul>
                     {navLinks.map((link) => (
-                        <li key={link.id} className="font-display">
-                            <a href={`#${link.id}`}>{link.title}</a>
+                        <li key={link.id} className="font-sans uppercase">
+                            <a href={`#${link.id}`} className="hover:text-[#3d3228]/70">{link.title}</a>
                         </li>
                     ))}
                 </ul>
