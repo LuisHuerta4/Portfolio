@@ -4,6 +4,10 @@ const navLinks = [
         title: "About",
     },
     {
+        id: "technologies",
+        title: "Tech Stack",
+    },
+    {
         id: "projects",
         title: "Projects",
     },
@@ -11,7 +15,7 @@ const navLinks = [
         id: "contact",
         title: "Contact",
     }
-]
+];
 
 const techList = [
     {

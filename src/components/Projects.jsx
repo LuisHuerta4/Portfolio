@@ -66,7 +66,7 @@ const Projects = () => {
             ref={sectionRef}
         >
             <h2 className="title mt-28 md:mt-32 mb-15 text-8xl md:text-[15vw] lg:text-[10vw] leading-none text-center font-modern-negra tracking-[-0.02em]">
-                Projects
+                PROJECTS
             </h2>
 
             <div className="border-t border-[#3d3228]/10 pt-10 sm:pt-12 font-sans text-[10px] sm:text-xs md:text-sm tracking-wide grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-6 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-20 sm:mb-24 mb-16 relative z-10 md:max-w-6xl md:mx-auto">
