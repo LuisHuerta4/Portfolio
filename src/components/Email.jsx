@@ -82,7 +82,7 @@ const Email = () => {
     };
 
     return (
-        <section id="contact" ref={sectionRef} className="min-h-screen py-20 px-5 lg:px-0">
+        <section id="contact" ref={sectionRef} className="min-h-screen py-20 px-5 lg:px-0 bg-gradient-to-b from-[#f3f0ed] to-[#e8e3de]">
             <div className="container mx-auto max-w-4xl">
                 <div className="overflow-hidden mb-16">
                     <h2 className="contact-title font-modern-negra text-6xl md:text-8xl text-center">
@@ -90,7 +90,7 @@ const Email = () => {
                     </h2>
                 </div>
 
-                <div className="contact-form bg-[#ebe6e1] rounded-3xl p-8 md:p-12 shadow-lg">
+                <div className="contact-form bg-white/80 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-xl border border-[#3d3228]/10">
                     <p className="text-center text-lg md:text-xl mb-8 font-sans">
                         Have any questions or just want to chat? Send me a message!
                     </p>
