@@ -62,10 +62,10 @@ const Projects = () => {
     return (
         <section 
             id="projects" 
-            className="bg-gradient-to-b from-[#d4cdc5] via-[#e8e3de] to-[#f3f0ed] relative w-full mt-0 2xl:px-0 px-5 py-10 mb-40"
+            className="bg-gradient-to-b from-[#d7d1c9] via-[#e8e3de] to-[#f3f0ed] relative w-full mt-0 2xl:px-0 px-5 py-10 mb-40"
             ref={sectionRef}
         >
-            <h2 className="title mt-28 md:mt-32 mb-15 text-8xl md:text-[15vw] lg:text-[10vw] leading-none text-center font-modern-negra tracking-[-0.02em]">
+            <h2 className="title mt-20 md:mt-32 mb-15 text-7xl md:text-[16vw] lg:text-[10vw] leading-none text-center font-modern-negra tracking-[-0.02em]">
                 PROJECTS
             </h2>
 

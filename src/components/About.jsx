@@ -31,6 +31,14 @@ const About = () => {
       ease: "power1.inOut",
       duration: 1
     });
+
+    gsap.to(".sparkle", {
+      y: -7,
+      duration: 1.5,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+    });
   }, []);
 
   return (
@@ -74,29 +82,29 @@ const About = () => {
 
           <div className="lg:col-span-5 space-y-14">
             <div className="flex items-center gap-4">
-              <img src="/svg/sparkle-pink.svg" alt="pink sparkle" className="w-20" />
+              <img src="/svg/sparkle-pink.svg" alt="pink sparkle" className="sparkle w-20" />
               <p className="font-sans text-base tracking-wide">
                 Location - <span className="font-medium italic">Rialto, California</span>
               </p>
             </div>
 
             <div className="flex items-center gap-4">
-              <img src="/svg/sparkle-blue.svg" alt="blue sparkle" className="w-20" />
+              <img src="/svg/sparkle-blue.svg" alt="blue sparkle" className="sparkle w-20" />
               <p className="font-sans text-base tracking-wide">
                 Education - <span className="font-medium italic">B.S. Computer Science, UCR</span>
               </p>
             </div>
 
-            <div className="flex items-center gap-6 pt-6">
-              <img src="/svg/sparkle-yellow.svg" alt="yellow sparkle" className="w-20" />
-              <a href="#" aria-label="LinkedIn" target="_blank" className="hover:opacity-70 transition">
-                <img src="/svg/linkedin-icon.svg" alt="" className="w-8 h-8" />
+            <div className="flex items-center gap-10 pt-6">
+              <img src="/svg/sparkle-yellow.svg" alt="yellow sparkle" className="sparkle w-20" />
+              <a href="https://www.linkedin.com/in/luis-huerta-859b54332/" aria-label="LinkedIn" target="_blank" className="hover:opacity-70 transition">
+                <img src="/svg/linkedin-icon.svg" alt="" className="w-8 h-8 transition-transform duration-300 hover:scale-150" />
               </a>
               <a href="https://github.com/LuisHuerta4" target="_blank" aria-label="GitHub" className="hover:opacity-70 transition">
-                <img src="/svg/github-icon.svg" alt="" className="w-8 h-8" />
+                <img src="/svg/github-icon.svg" alt="" className="w-8 h-8 transition-transform duration-300 hover:scale-150" />
               </a>
               <a href="mailto:LuisHuerta0518@gmail.com" target="_blank" aria-label="Email" className="hover:opacity-70 transition">
-                <img src="/svg/email-icon.svg" alt="" className="w-8 h-8" />
+                <img src="/svg/email-icon.svg" alt="" className="w-8 h-8 transition-transform duration-300 hover:scale-150" />
               </a>
             </div>
           </div>

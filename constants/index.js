@@ -19,14 +19,14 @@ const navLinks = [
 
 const techList = [
     {
-        name: "JavaScript",
-        color: "#FFE55E",
-        icon: "/svg/javascript-icon.svg",
-    },
-    {
         name: "React",
         color: "#53c1de",
         icon: "/svg/react-icon.svg",
+    },
+    {
+        name: "JavaScript",
+        color: "#FFE55E",
+        icon: "/svg/javascript-icon.svg",
     },
     {
         name: "HTML",
@@ -58,20 +58,31 @@ const techList = [
         color: "#8cc84b",
         icon: "/svg/node-icon.svg",
     },
+    {
+        name: "Postgres",
+        color: "#336791",
+        icon: "/svg/postgres-icon.svg",
+    },
+    {
+        name: "GSAP",
+        color: "#1ac44a",
+        icon: "/svg/gsap-icon.jpg",
+    },
+    {
+        name: "Git",
+        color: "#de4c36",
+        icon: "/svg/git-icon.svg",
+    },
+    {
+        name: "C++",
+        color: "#5c8dbc",
+        icon: "/svg/C++-icon.svg",
+    },
 ];
 
 const projects = [
     {
         id: "project-1",
-        name: "Spotify BPM Sorter",
-        image: "/images/Project-1.png",
-        url: "https://spotify.com",
-        title: "Spotify BPM Sorter",
-        stack: ["React", "Node.js", "Express", "Spotify API"],
-        description: "The bpm of songs can have differnt effects on a persons mood and energy levels. This project is a web application where users can log in with their Spotify account, select a playlist, and the app will analyze the songs and sort them into different playlist based on their BPM ranges.",
-    },
-    {
-        id: "project-2",
         name: "AI Resume Analyzer",
         image: "/images/Project-2.png",
         url: "https://github.com/LuisHuerta4/Resume-Analyzer",
@@ -80,14 +91,23 @@ const projects = [
         description: "A Web application that helps job seekers improve their resumes by providing AI-powered, job-specific feedback. Users can upload their resumes, enter job details, and instantly receive ATS scores, strengths, weaknesses, and tailored suggestions for improvement.",
     },
     {
-        id: "project-3",
+        id: "project-2",
         name: "Stock Tracker and Notifier",
         image: "/images/Project-3.png",
         url: "https://github.com/LuisHuerta4/Stocket-Stock-Tracker",
         title: "Stock Tracker and Notifier",
         stack: ["Next.js", "TypeScript", "Inngest", "TailwindCSS", "Stock API"],
         description: "A web application that allows users to track their favorite stocks and receive real-time notifications on price changes, news, and market trends. Users can create a personalized watchlist, set custom alerts, and view detailed stock performance charts.",
-    }
+    },
+    {
+        id: "project-3",
+        name: "Spotify BPM Sorter",
+        image: "/images/Project-1.png",
+        url: "",
+        title: "Spotify BPM Sorter",
+        stack: ["React", "Node.js", "Express", "Spotify API"],
+        description: "The bpm of songs can have differnt effects on a persons mood and energy levels. This project is a web application where users can log in with their Spotify account, select a playlist, and the app will analyze the songs and sort them into different playlist based on their BPM ranges.",
+    },
 ];
 
 export {

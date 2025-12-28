@@ -65,9 +65,6 @@ const Hero = () => {
                     <p className="hero-subtitle text-lg sm:text-xl md:text-2xl mt-6 opacity-80 font-serif">
                         Full-Stack Developer
                     </p>
-                    <p className="hero-location text-sm sm:text-base tracking-wide uppercase mt-2 opacity-50 font-sans">
-                        Based in Rialto, CA
-                    </p>
                 </div>
             </div>
         </section>
