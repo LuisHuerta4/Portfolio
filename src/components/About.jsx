@@ -64,7 +64,7 @@ const About = () => {
           <div className="lg:col-span-7 space-y-10 font-sans text-lg leading-relaxed text-[#3d3228]/90">
             <p className="font-sans text-lg md:text-xl lg:text-2xl leading-relaxed text-[#3d3228]/90">
               I'm a <span className="font-semibold text-[#3d3228]">Computer Science graduate</span> who enjoys building
-              web experiences that feel intentional — visually clear, responsive, and thoughtfully structured.
+              web experiences that feel intentional, visually clear, responsive, and thoughtfully structured.
             </p>
 
             <p className="font-sans text-base md:text-lg lg:text-xl leading-relaxed text-[#3d3228]/80">
@@ -75,7 +75,7 @@ const About = () => {
 
             <p className="font-sans text-base md:text-lg lg:text-xl leading-relaxed text-[#3d3228]/80">
               I like working with tools like <span className="font-semibold">React</span>, <span className="font-semibold">Node.js</span>,
-              and <span className="font-semibold">TypeScript</span>, and I care a lot about details — layout, spacing, motion,
+              and <span className="font-semibold">JavaScript</span>, and I care a lot about details — layout, spacing, motion,
               and how a product feels to use, not just whether it works.
             </p>
           </div>

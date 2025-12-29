@@ -88,7 +88,7 @@ const projects = [
         url: "https://github.com/LuisHuerta4/Resume-Analyzer",
         title: "AI Resume Analyzer",
         stack: ["React", "Typescript", "Node.js", "TailwindCSS", "Zustand", "JS", "Puter"],
-        description: "A Web application that helps job seekers improve their resumes by providing AI-powered, job-specific feedback. Users can upload their resumes, enter job details, and instantly receive ATS scores, strengths, weaknesses, and tailored suggestions for improvement.",
+        description: "A web application that helps job seekers improve their resumes by providing AI-powered, job-specific feedback. Users can upload their resumes, enter job details, and instantly receive ATS scores, strengths, weaknesses, and tailored suggestions for improvement.",
     },
     {
         id: "project-2",
