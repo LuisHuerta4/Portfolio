@@ -15,12 +15,17 @@ const Projects = () => {
             scrollTrigger: {
                 trigger: sectionRef.current,
                 start: "top 70%",
+                toggleActions: "play reset play reset",
             },
             yPercent: 100,
             duration: 1.8,
             ease: "expo.out",
             stagger: 0.06,
         });
+
+        return () => {
+            split.revert();
+        };
     }, []);
 
     useGSAP(() => {
@@ -60,8 +65,8 @@ const Projects = () => {
     const currentProject = getProjectAt(0);
 
     return (
-        <section 
-            id="projects" 
+        <section
+            id="projects"
             className="bg-gradient-to-b from-[#d7d1c9] via-[#e8e3de] to-[#f3f0ed] relative w-full mt-0 2xl:px-0 px-5 py-10 mb-40"
             ref={sectionRef}
         >

@@ -13,6 +13,7 @@ const About = () => {
       scrollTrigger: {
         trigger: sectionRef.current,
         start: "top 70%",
+        toggleActions: "play reset play reset",
       },
       yPercent: 100,
       opacity: 0,
@@ -39,6 +40,10 @@ const About = () => {
       yoyo: true,
       ease: "sine.inOut",
     });
+
+    return () => {
+      split.revert();
+    };
   }, []);
 
   return (
