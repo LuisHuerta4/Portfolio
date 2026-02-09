@@ -83,6 +83,15 @@ const techList = [
 const projects = [
     {
         id: "project-1",
+        name: "Job Application Tracker",
+        image: "/images/Project-1.png",
+        url: "https://github.com/LuisHuerta4/Job-Tracker",
+        title: "Job Application Tracker",
+        stack: ["React", "Node.js", "Express", "TailwindCSS", "MongoDB", "JWT", "GSAP", "Nodemailer"],
+        description: "Application that helps users manage and track job applications in one place. Users can create, edit, and delete applications, view them in multiple formats (card, table, and kanban), and organize progress.",
+    },
+    {
+        id: "project-2",
         name: "AI Resume Analyzer",
         image: "/images/Project-2.png",
         url: "https://github.com/LuisHuerta4/Resume-Analyzer",
@@ -96,17 +105,8 @@ const projects = [
         image: "/images/Project-3.png",
         url: "https://github.com/LuisHuerta4/Stocket-Stock-Tracker",
         title: "Stock Tracker and Notifier",
-        stack: ["Next.js", "TypeScript", "Inngest", "TailwindCSS", "Stock API"],
+        stack: ["Next.js", "TypeScript", "Inngest", "MongoDB", "TailwindCSS", "Finnhub API"],
         description: "A web application that allows users to track their favorite stocks and receive real-time notifications on price changes, news, and market trends. Users can create a personalized watchlist, set custom alerts, and view detailed stock performance charts.",
-    },
-    {
-        id: "project-3",
-        name: "Spotify BPM Sorter",
-        image: "/images/Project-1.png",
-        url: "",
-        title: "Spotify BPM Sorter",
-        stack: ["React", "Node.js", "Express", "Spotify API"],
-        description: "The bpm of songs can have differnt effects on a persons mood and energy levels. This project is a web application where users can log in with their Spotify account, select a playlist, and the app will analyze the songs and sort them into different playlist based on their BPM ranges.",
     },
 ];
 
