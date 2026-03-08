@@ -1,36 +1,61 @@
 import { useGSAP } from "@gsap/react";
+import { SplitText } from "gsap/all";
 import gsap from "gsap";
 
 const Hero = () => {
     useGSAP(() => {
-        const tl = gsap.timeline({ delay: 0.3 });
+        const nameSplit = new SplitText(".hero-title", { type: "chars" });
 
-        tl.from(".star", {
-            scale: 0,
-            opacity: 0,
-            rotate: -40,
-            duration: 1,
-            stagger: 0.2,
+        // Set initial hidden states — curtain covers these until ~1.3s
+        gsap.set(nameSplit.chars, { yPercent: 110, opacity: 0 });
+        gsap.set(".intro-text", { y: 20, opacity: 0 });
+        gsap.set(".hero-subtitle", { y: 20, opacity: 0 });
+        gsap.set(".star", { scale: 0, opacity: 0 });
+
+        // Delay 1.0s so animations overlap with curtain's final reveal
+        const tl = gsap.timeline({ delay: 1.0 });
+
+        // Stars pop in
+        tl.to(".star", {
+            scale: 1,
+            opacity: 1,
+            duration: 0.9,
+            stagger: 0.15,
             ease: "back.out(1.7)",
         });
 
-        // Text animation
-        tl.from(".intro-text, .hero-title, .hero-subtitle, .hero-location", {
-            y: 40,
-            opacity: 0,
-            duration: 1,
-            ease: "power3.out",
-            stagger: 0.15,
+        // Text animations
+        tl.to(".intro-text", {
+            y: 0,
+            opacity: 0.8,
+            duration: 0.7,
+            ease: "expo.out",
         }, "-=0.4");
 
-        // Star Motions
+        tl.to(nameSplit.chars, {
+            yPercent: 0,
+            opacity: 1,
+            duration: 1.0,
+            stagger: 0.03,
+            ease: "expo.out",
+        }, "-=0.35");
+
+        tl.to(".hero-subtitle", {
+            y: 0,
+            opacity: 0.8,
+            duration: 0.7,
+            ease: "expo.out",
+        }, "-=0.55");
+
+        // Star animations: floating and rotating
         gsap.to(".star", {
             y: -40,
-            duration: 1,
+            duration: 2,
             ease: "sine.inOut",
-            stagger: 0.25,
+            stagger: 0.3,
             repeat: -1,
             yoyo: true,
+            delay: 1.8,
         });
 
         gsap.to(".star", {
@@ -38,8 +63,10 @@ const Hero = () => {
             duration: 6,
             ease: "none",
             repeat: -1,
-            yoyo: true,
+            delay: 1.5,
         });
+
+        return () => nameSplit.revert();
     });
 
     return (

@@ -1,23 +1,32 @@
-import { navLinks } from "../../constants"
-import { useGSAP } from "@gsap/react"
-import gsap from "gsap"
+import { navLinks } from "../../constants";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/all";
+import gsap from "gsap";
 
 const Navbar = () => {
 
     useGSAP(() => {
-        const navTween = gsap.timeline({
-            scrollTrigger: {
-                trigger: "nav",
-                start: "bottom top", //when bottom of navbar reaches top of view port
-            }
+        ScrollTrigger.create({
+            trigger: "#home",
+            start: "bottom top",
+            onEnter: () =>
+                gsap.to("nav", {
+                    backgroundColor: "rgba(235, 230, 225, 0.88)",
+                    backdropFilter: "blur(12px)",
+                    boxShadow: "0 1px 0 rgba(61, 50, 40, 0.08)",
+                    duration: 0.5,
+                    ease: "power2.out",
+                }),
+            onLeaveBack: () =>
+                gsap.to("nav", {
+                    backgroundColor: "transparent",
+                    backdropFilter: "blur(0px)",
+                    boxShadow: "none",
+                    duration: 0.5,
+                    ease: "power2.out",
+                }),
         });
-
-        navTween.fromTo("nav", { backgroundColor: "transparent" }, {
-            backgroundColor: "#ebe6e1",
-            duration: 1,
-            ease: "power1.inOut",
-        });
-    })
+    });
 
     return (
         <nav className="px-10">
@@ -35,7 +44,7 @@ const Navbar = () => {
                 </ul>
             </div>
         </nav>
-    )
-}
+    );
+};
 
-export default Navbar
+export default Navbar;
