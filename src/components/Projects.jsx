@@ -1,15 +1,20 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { projects } from "../../constants";
 import { useGSAP } from "@gsap/react";
 import { SplitText } from "gsap/all";
 import gsap from "gsap";
 
 const Projects = () => {
-    const [currentIndex, setCurrentIndex] = useState(0);
     const sectionRef = useRef(null);
+    const rowRefs = useRef([]);
+    const cursorRef = useRef(null);
+    const cursorImgRef = useRef(null);
+    const activeIndexRef = useRef(null);
+    const animatingRef = useRef(false);
 
+    // Title
     useGSAP(() => {
-        const split = new SplitText(".title", { type: "chars" });
+        const split = new SplitText(".projects-title", { type: "chars" });
 
         gsap.from(split.chars, {
             scrollTrigger: {
@@ -23,129 +28,226 @@ const Projects = () => {
             stagger: 0.06,
         });
 
-        return () => {
-            split.revert();
-        };
+        return () => split.revert();
     }, []);
 
+    // Cursor setup
     useGSAP(() => {
-        gsap.fromTo("#tech-stack", { opacity: 0 }, { opacity: 1, duration: 1 });
 
-        gsap.fromTo(".project img", { opacity: 0, xPercent: -100 }, {
-            xPercent: 0,
-            opacity: 1,
-            duration: 1,
-            ease: "power1.inOut",
+        // Mouse follower setup
+        const onMouseMove = (e) => {
+            gsap.to(cursorRef.current, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.55,
+                ease: "power2.out",
+            });
+        };
+        window.addEventListener("mousemove", onMouseMove);
+        return () => window.removeEventListener("mousemove", onMouseMove);
+    }, []);
+
+    const expandRow = (index) => {
+        const row = rowRefs.current[index];
+        const content = row.querySelector(".expand-content");
+        const img = row.querySelector(".project-img");
+        const detailLines = row.querySelectorAll(".detail-line");
+        const plusIcon = row.querySelector(".plus-icon");
+
+        gsap.set(content, { height: "auto" });
+        const targetH = content.offsetHeight;
+        gsap.set(content, { height: 0 });
+
+        gsap.to(content, {
+            height: targetH,
+            duration: 0.75,
+            ease: "power3.inOut",
+            onComplete: () => {
+                gsap.set(content, { height: "auto" });
+                animatingRef.current = false;
+            },
         });
 
-        gsap.fromTo(".details h2", { yPercent: 100, opacity: 0 }, {
-            yPercent: 0,
-            opacity: 1,
-            ease: "power1.inOut",
-        });
+        // Plus → X
+        gsap.to(plusIcon, { rotation: 45, duration: 0.45, ease: "back.out(2)" });
 
-        gsap.fromTo(".details p", { yPercent: 100, opacity: 0 }, {
-            yPercent: 0,
-            opacity: 1,
-            ease: "power1.inOut",
-        });
-    }, [currentIndex]);
+        // Image reveal
+        gsap.fromTo(
+            img,
+            { clipPath: "inset(0 100% 0 0)" },
+            { clipPath: "inset(0 0% 0 0)", duration: 1.1, ease: "expo.inOut", delay: 0.2 }
+        );
 
-    const totalProjects = projects.length;
-
-    const goToSlide = (index) => {
-        const newIndex = (index + totalProjects) % totalProjects;
-        setCurrentIndex(newIndex);
+        // Project details
+        gsap.fromTo(
+            detailLines,
+            { opacity: 0, y: 28 },
+            { opacity: 1, y: 0, duration: 0.65, stagger: 0.13, ease: "expo.out", delay: 0.38 }
+        );
     };
 
-    const getProjectAt = (indexOffset) => {
-        return projects[(currentIndex + indexOffset + totalProjects) % totalProjects];
+    const collapseRow = (index, onComplete) => {
+        const row = rowRefs.current[index];
+        const content = row.querySelector(".expand-content");
+        const plusIcon = row.querySelector(".plus-icon");
+
+        gsap.to(content, {
+            height: 0,
+            duration: 0.5,
+            ease: "power3.inOut",
+            onComplete,
+        });
+
+        gsap.to(plusIcon, { rotation: 0, duration: 0.35 });
     };
 
-    const currentProject = getProjectAt(0);
+    const handleRowClick = (index) => {
+        if (animatingRef.current) return;
+        animatingRef.current = true;
+
+        if (activeIndexRef.current === index) {
+            collapseRow(index, () => {
+                activeIndexRef.current = null;
+                animatingRef.current = false;
+            });
+        } else {
+            if (activeIndexRef.current !== null) {
+                collapseRow(activeIndexRef.current);
+            }
+            activeIndexRef.current = index;
+            expandRow(index);
+        }
+    };
+
+    const handleRowMouseEnter = (index) => {
+        if (cursorImgRef.current) {
+            cursorImgRef.current.src = projects[index].image;
+        }
+        gsap.to(cursorRef.current, {
+            opacity: 1,
+            scale: 1,
+            duration: 0.35,
+            ease: "back.out(1.5)",
+        });
+    };
+
+    const handleRowMouseLeave = () => {
+        gsap.to(cursorRef.current, { opacity: 0, scale: 0.7, duration: 0.3 });
+    };
 
     return (
         <section
             id="projects"
-            className="bg-gradient-to-b from-[#d7d1c9] via-[#e8e3de] to-[#f3f0ed] relative w-full mt-0 2xl:px-0 px-5 py-10 mb-40"
             ref={sectionRef}
+            className="bg-linear-to-b from-[#d7d1c9] via-[#e8e3de] to-[#f3f0ed] relative w-full px-5 py-10 mb-40"
         >
-            <h2 className="title mt-20 md:mt-32 mb-15 text-7xl md:text-[16vw] lg:text-[10vw] leading-none text-center font-modern-negra tracking-[-0.02em]">
-                PROJECTS
-            </h2>
-
-            <div className="border-t border-[#3d3228]/10 pt-10 sm:pt-12 font-sans text-[10px] sm:text-xs md:text-sm tracking-wide grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-6 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-20 sm:mb-24 mb-16 relative z-10 md:max-w-6xl md:mx-auto">
-                {projects.map((project, index) => {
-                    const isActive = index === currentIndex;
-
-                    return (
-                        <button
-                            key={project.id}
-                            className={`
-                        ${isActive
-                                    ? "text-[#91806e]"
-                                    : "text-[#3d3228]/50 hover:text-[#3d3228]"}
-                                cursor-pointer`}
-                            onClick={() => goToSlide(index)}
-                        >
-                            {project.name.toUpperCase()}
-                        </button>
-                    );
-                })}
+            {/* Desktop-only cursor follower */}
+            <div
+                ref={cursorRef}
+                className="fixed pointer-events-none z-100 hidden md:block"
+                style={{
+                    top: 0,
+                    left: 0,
+                    width: "230px",
+                    height: "155px",
+                    borderRadius: "10px",
+                    overflow: "hidden",
+                    transform: "translate(-50%, -50%) scale(0.7)",
+                    opacity: 0,
+                    boxShadow: "0 24px 64px rgba(61,50,40,0.22)",
+                }}
+            >
+                <img
+                    ref={cursorImgRef}
+                    src=""
+                    alt=""
+                    className="w-full h-full object-cover"
+                />
             </div>
 
-            <div className="container mx-auto relative">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-14 sm:gap-y-16 md:gap-y-18 lg:gap-y-20 gap-x-10 sm:gap-x-12 lg:gap-x-16 items-center lg:min-h-[470px]">
-                    <div className="flex items-center justify-between w-full absolute top-full px-4 pt-5 lg:pt-0 sm:px-0">
-                        <button className="cursor-pointer max-w-16 sm:max-w-20" onClick={() => goToSlide(currentIndex - 1)}>
-                            <img src="/images/right-arrow.png" alt="right-arrow" aria-hidden="true" />
-                        </button>
+            <div className="overflow-hidden">
+                <h2 className="projects-title mt-20 md:mt-32 mb-16 text-7xl md:text-[16vw] lg:text-[10vw] leading-none text-center font-modern-negra tracking-[-0.02em]">
+                    PROJECTS
+                </h2>
+            </div>
 
-                        <button className="cursor-pointer max-w-16 sm:max-w-20" onClick={() => goToSlide(currentIndex + 1)}>
-                            <img src="/images/left-arrow.png" alt="left-arrow" aria-hidden="true" />
-                        </button>
-                    </div>
+            <div className="max-w-6xl mx-auto">
+                {projects.map((project, index) => (
+                    <div
+                        key={project.id + index}
+                        ref={(el) => (rowRefs.current[index] = el)}
+                    >
+                        <div className="row-line h-px bg-[#3d3228]/20" />
+                        <div
+                            className="row-header flex items-center justify-between py-5 sm:py-7 cursor-pointer select-none group"
+                            onClick={() => handleRowClick(index)}
+                            onMouseEnter={() => handleRowMouseEnter(index)}
+                            onMouseLeave={handleRowMouseLeave}
+                        >
+                            <div className="flex items-baseline gap-4 sm:gap-8 min-w-0">
+                                <span className="font-modern-negra text-xs sm:text-sm text-[#3d3228]/30 shrink-0 w-6 sm:w-8 tabular-nums">
+                                    {String(index + 1).padStart(2, "0")}
+                                </span>
+                                <span className="font-modern-negra text-xl sm:text-3xl md:text-4xl lg:text-5xl tracking-tight transition-transform duration-300 group-hover:translate-x-1.5 truncate">
+                                    {project.name.toUpperCase()}
+                                </span>
+                            </div>
 
-                    <div id="tech-stack" className="order-3 lg:order-1 lg:col-span-3 px-2 sm:px-0">
-                        <p className="font-modern-negra text-2xl sm:text-3xl md:text-4xl mb-4 sm:mb-6">
-                            Tech Stack
-                        </p>
-                        <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm tracking-wide text-[#3d3228]/70">
-                            {currentProject.stack.map((tech) => (
-                                <li key={tech}>{tech.toUpperCase()}</li>
-                            ))}
-                        </ul>
-                    </div>
+                            <div className="flex items-center gap-3 sm:gap-6 shrink-0 ml-3">
+                                <span className="hidden lg:block font-sans text-[10px] tracking-[0.2em] text-[#3d3228]/40 uppercase whitespace-nowrap">
+                                    {project.stack.slice(0, 2).join(" · ")}
+                                </span>
+                                <div className="plus-icon w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-[#3d3228]/25 flex-center text-sm text-[#3d3228]/50 shrink-0 transition-colors duration-300 group-hover:border-[#3d3228]/50">
+                                    +
+                                </div>
+                            </div>
+                        </div>
 
-                    <div className="project lg:col-span-5 flex justify-center order-1 lg:order-2 px-6 sm:px-4 md:px-0">
-                        <div className="w-full max-w-[320px] sm:max-w-[380px] md:max-w-[430px] xl:max-w-[520px]">
-                            <img
-                                src={currentProject.image}
-                                className="w-full h-auto object-contain"
-                            />
+                        <div
+                            className="expand-content overflow-hidden"
+                            style={{ height: 0 }}
+                        >
+                            <div className="pb-12 sm:pb-16 pl-10 sm:pl-16 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-14">
+                                <div className="overflow-hidden rounded-lg">
+                                    <img
+                                        src={project.image}
+                                        alt={project.title}
+                                        className="project-img w-full h-auto object-contain"
+                                        style={{ clipPath: "inset(0 100% 0 0)" }}
+                                    />
+                                </div>
+
+                                <div className="flex flex-col justify-center space-y-5 sm:space-y-6">
+                                    <p className="detail-line font-sans text-sm sm:text-base leading-relaxed text-[#3d3228]/75">
+                                        {project.description}
+                                    </p>
+
+                                    <div className="detail-line flex flex-wrap gap-2">
+                                        {project.stack.map((tech) => (
+                                            <span
+                                                key={tech}
+                                                className="text-[10px] tracking-[0.15em] uppercase border border-[#3d3228]/20 px-3 py-1.5 rounded-full text-[#3d3228]/55"
+                                            >
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+
+                                    <a
+                                        href={project.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="detail-line self-start inline-flex items-center gap-2 font-sans text-xs tracking-[0.15em] uppercase text-[#3d3228] border border-[#3d3228]/30 px-6 py-3 rounded-full transition-all duration-300 hover:bg-[#3d3228] hover:text-[#f3f0ed]"
+                                    >
+                                        View Project <span className="text-base">↗</span>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                ))}
 
-                    <div className="details space-y-4 sm:space-y-5 md:space-y-6 order-2 lg:col-span-4 px-2 sm:px-0">
-                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif leading-tight">
-                            {currentProject.title}
-                        </h2>
-
-                        <p className="font-sans text-sm sm:text-base md:text-lg leading-relaxed text-[#3d3228]/80">
-                            {currentProject.description}
-                        </p>
-
-                        <a
-                            href={currentProject.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 font-sans text-xs sm:text-sm tracking-wide uppercase text-[#3d3228] border border-[#3d3228]/30 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full transition-all duration-300 hover:bg-[#3d3228] hover:text-[#f3f0ed] hover:border-[#3d3228]"
-                        >
-                            View
-                            <span className="text-lg">↗</span>
-                        </a>
-                    </div>
-                </div>
+                <div className="bottom-line h-px bg-[#3d3228]/20" />
             </div>
         </section>
     );
