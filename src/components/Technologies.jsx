@@ -33,6 +33,7 @@ const Technologies = () => {
             const tl = gsap.timeline({ paused: true, defaults: { ease: "power1.inOut" } });
 
             gsap.set(logo, { autoAlpha: 0, scale: 0.3 });
+            gsap.set(shape, { opacity: 1, scale: 1.2 });
             gsap.set(card, { overflow: "visible" });
 
             gsap.to(card, {

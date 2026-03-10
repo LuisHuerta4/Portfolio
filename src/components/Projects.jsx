@@ -7,8 +7,6 @@ import gsap from "gsap";
 const Projects = () => {
     const sectionRef = useRef(null);
     const rowRefs = useRef([]);
-    const cursorRef = useRef(null);
-    const cursorImgRef = useRef(null);
     const activeIndexRef = useRef(null);
     const animatingRef = useRef(false);
 
@@ -29,22 +27,6 @@ const Projects = () => {
         });
 
         return () => split.revert();
-    }, []);
-
-    // Cursor setup
-    useGSAP(() => {
-
-        // Mouse follower setup
-        const onMouseMove = (e) => {
-            gsap.to(cursorRef.current, {
-                x: e.clientX,
-                y: e.clientY,
-                duration: 0.55,
-                ease: "power2.out",
-            });
-        };
-        window.addEventListener("mousemove", onMouseMove);
-        return () => window.removeEventListener("mousemove", onMouseMove);
     }, []);
 
     const expandRow = (index) => {
@@ -119,52 +101,12 @@ const Projects = () => {
         }
     };
 
-    const handleRowMouseEnter = (index) => {
-        if (cursorImgRef.current) {
-            cursorImgRef.current.src = projects[index].image;
-        }
-        gsap.to(cursorRef.current, {
-            opacity: 1,
-            scale: 1,
-            duration: 0.35,
-            ease: "back.out(1.5)",
-        });
-    };
-
-    const handleRowMouseLeave = () => {
-        gsap.to(cursorRef.current, { opacity: 0, scale: 0.7, duration: 0.3 });
-    };
-
     return (
         <section
             id="projects"
             ref={sectionRef}
             className="bg-linear-to-b from-[#d7d1c9] via-[#e8e3de] to-[#f3f0ed] relative w-full px-5 py-10 mb-40"
         >
-            {/* Desktop-only cursor follower */}
-            <div
-                ref={cursorRef}
-                className="fixed pointer-events-none z-100 hidden md:block"
-                style={{
-                    top: 0,
-                    left: 0,
-                    width: "230px",
-                    height: "155px",
-                    borderRadius: "10px",
-                    overflow: "hidden",
-                    transform: "translate(-50%, -50%) scale(0.7)",
-                    opacity: 0,
-                    boxShadow: "0 24px 64px rgba(61,50,40,0.22)",
-                }}
-            >
-                <img
-                    ref={cursorImgRef}
-                    src=""
-                    alt=""
-                    className="w-full h-full object-cover"
-                />
-            </div>
-
             <div className="overflow-hidden">
                 <h2 className="projects-title mt-20 md:mt-32 mb-16 text-7xl md:text-[16vw] lg:text-[10vw] leading-none text-center font-modern-negra tracking-[-0.02em]">
                     PROJECTS
@@ -181,8 +123,6 @@ const Projects = () => {
                         <div
                             className="row-header flex items-center justify-between py-5 sm:py-7 cursor-pointer select-none group"
                             onClick={() => handleRowClick(index)}
-                            onMouseEnter={() => handleRowMouseEnter(index)}
-                            onMouseLeave={handleRowMouseLeave}
                         >
                             <div className="flex items-baseline gap-4 sm:gap-8 min-w-0">
                                 <span className="font-modern-negra text-xs sm:text-sm text-[#3d3228]/30 shrink-0 w-6 sm:w-8 tabular-nums">
