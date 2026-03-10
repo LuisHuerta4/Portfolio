@@ -1,9 +1,30 @@
-import { useEffect } from "react";
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import { SplitText } from "gsap/all";
 import gsap from "gsap";
 import { techList } from "../../constants";
 
 const Technologies = () => {
-    useEffect(() => {
+    const sectionRef = useRef(null);
+
+    useGSAP(() => {
+        // Header
+        const titleSplit = new SplitText(".tech-title", { type: "chars" });
+
+        gsap.from(titleSplit.chars, {
+            scrollTrigger: {
+                trigger: sectionRef.current,
+                start: "top 70%",
+                toggleActions: "play reset play reset",
+            },
+            yPercent: 100,
+            opacity: 0,
+            duration: 1.6,
+            ease: "expo.out",
+            stagger: 0.04,
+        });
+
+        // Hover animations
         techList.forEach((tech, i) => {
             const card = `.tech-card-${i}`;
             const logo = `.tech-logo-${i}`;
@@ -11,9 +32,7 @@ const Technologies = () => {
 
             const tl = gsap.timeline({ paused: true, defaults: { ease: "power1.inOut" } });
 
-            // Initial states
             gsap.set(logo, { autoAlpha: 0, scale: 0.3 });
-            gsap.set(shape, { opacity: 1, scale: 1.5 });
             gsap.set(card, { overflow: "visible" });
 
             gsap.to(card, {
@@ -52,12 +71,16 @@ const Technologies = () => {
                 }, 3000);
             });
         });
+
+        return () => {
+            titleSplit.revert();
+        };
     }, []);
 
     return (
-        <section id="technologies" className="py-16 sm:py-20 md:py-24 lg:py-32 bg-gradient-to-b from-[#f3f0ed] to-[#d7d1c9]">
+        <section id="technologies" ref={sectionRef} className="py-16 sm:py-20 md:py-24 lg:py-32 bg-gradient-to-b from-[#f3f0ed] to-[#d7d1c9]">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-[#3d3228] text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl tracking-[-0.02em] font-modern-negra mb-10 sm:mb-12 md:mb-14 lg:mb-16">
+                <h2 className="tech-title text-[#3d3228] text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl tracking-[-0.02em] font-modern-negra mb-10 sm:mb-12 md:mb-14 lg:mb-16 overflow-hidden">
                     Technologies I Use
                 </h2>
 
