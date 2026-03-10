@@ -34,7 +34,6 @@ const Projects = () => {
         const content = row.querySelector(".expand-content");
         const img = row.querySelector(".project-img");
         const detailLines = row.querySelectorAll(".detail-line");
-        const plusIcon = row.querySelector(".plus-icon");
 
         gsap.set(content, { height: "auto" });
         const targetH = content.offsetHeight;
@@ -49,9 +48,6 @@ const Projects = () => {
                 animatingRef.current = false;
             },
         });
-
-        // Plus → X
-        gsap.to(plusIcon, { rotation: 45, duration: 0.45, ease: "back.out(2)" });
 
         // Image reveal
         gsap.fromTo(
@@ -71,7 +67,6 @@ const Projects = () => {
     const collapseRow = (index, onComplete) => {
         const row = rowRefs.current[index];
         const content = row.querySelector(".expand-content");
-        const plusIcon = row.querySelector(".plus-icon");
 
         gsap.to(content, {
             height: 0,
@@ -79,8 +74,6 @@ const Projects = () => {
             ease: "power3.inOut",
             onComplete,
         });
-
-        gsap.to(plusIcon, { rotation: 0, duration: 0.35 });
     };
 
     const handleRowClick = (index) => {
@@ -124,23 +117,13 @@ const Projects = () => {
                             className="row-header flex items-center justify-between py-5 sm:py-7 cursor-pointer select-none group"
                             onClick={() => handleRowClick(index)}
                         >
+                            <img src="/svg/sparkle-black.svg" alt="black sparkle" className="sparkle w-7 h-7" />
                             <div className="flex items-baseline gap-4 sm:gap-8 min-w-0">
-                                <span className="font-modern-negra text-xs sm:text-sm text-[#3d3228]/30 shrink-0 w-6 sm:w-8 tabular-nums">
-                                    {String(index + 1).padStart(2, "0")}
-                                </span>
                                 <span className="font-modern-negra text-xl sm:text-3xl md:text-4xl lg:text-5xl tracking-tight transition-transform duration-300 group-hover:translate-x-1.5 truncate">
                                     {project.name.toUpperCase()}
                                 </span>
                             </div>
-
-                            <div className="flex items-center gap-3 sm:gap-6 shrink-0 ml-3">
-                                <span className="hidden lg:block font-sans text-[10px] tracking-[0.2em] text-[#3d3228]/40 uppercase whitespace-nowrap">
-                                    {project.stack.slice(0, 2).join(" · ")}
-                                </span>
-                                <div className="plus-icon w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-[#3d3228]/25 flex-center text-sm text-[#3d3228]/50 shrink-0 transition-colors duration-300 group-hover:border-[#3d3228]/50">
-                                    +
-                                </div>
-                            </div>
+                            <img src="/svg/sparkle-black.svg" alt="black sparkle" className="sparkle w-7 h-7" />
                         </div>
 
                         <div
