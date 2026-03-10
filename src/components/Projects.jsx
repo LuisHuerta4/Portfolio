@@ -7,8 +7,6 @@ import gsap from "gsap";
 const Projects = () => {
     const sectionRef = useRef(null);
     const rowRefs = useRef([]);
-    const cursorRef = useRef(null);
-    const cursorImgRef = useRef(null);
     const activeIndexRef = useRef(null);
     const animatingRef = useRef(false);
 
@@ -31,28 +29,11 @@ const Projects = () => {
         return () => split.revert();
     }, []);
 
-    // Cursor setup
-    useGSAP(() => {
-
-        // Mouse follower setup
-        const onMouseMove = (e) => {
-            gsap.to(cursorRef.current, {
-                x: e.clientX,
-                y: e.clientY,
-                duration: 0.55,
-                ease: "power2.out",
-            });
-        };
-        window.addEventListener("mousemove", onMouseMove);
-        return () => window.removeEventListener("mousemove", onMouseMove);
-    }, []);
-
     const expandRow = (index) => {
         const row = rowRefs.current[index];
         const content = row.querySelector(".expand-content");
         const img = row.querySelector(".project-img");
         const detailLines = row.querySelectorAll(".detail-line");
-        const plusIcon = row.querySelector(".plus-icon");
 
         gsap.set(content, { height: "auto" });
         const targetH = content.offsetHeight;
@@ -67,9 +48,6 @@ const Projects = () => {
                 animatingRef.current = false;
             },
         });
-
-        // Plus → X
-        gsap.to(plusIcon, { rotation: 45, duration: 0.45, ease: "back.out(2)" });
 
         // Image reveal
         gsap.fromTo(
@@ -89,7 +67,6 @@ const Projects = () => {
     const collapseRow = (index, onComplete) => {
         const row = rowRefs.current[index];
         const content = row.querySelector(".expand-content");
-        const plusIcon = row.querySelector(".plus-icon");
 
         gsap.to(content, {
             height: 0,
@@ -97,8 +74,6 @@ const Projects = () => {
             ease: "power3.inOut",
             onComplete,
         });
-
-        gsap.to(plusIcon, { rotation: 0, duration: 0.35 });
     };
 
     const handleRowClick = (index) => {
@@ -119,52 +94,12 @@ const Projects = () => {
         }
     };
 
-    const handleRowMouseEnter = (index) => {
-        if (cursorImgRef.current) {
-            cursorImgRef.current.src = projects[index].image;
-        }
-        gsap.to(cursorRef.current, {
-            opacity: 1,
-            scale: 1,
-            duration: 0.35,
-            ease: "back.out(1.5)",
-        });
-    };
-
-    const handleRowMouseLeave = () => {
-        gsap.to(cursorRef.current, { opacity: 0, scale: 0.7, duration: 0.3 });
-    };
-
     return (
         <section
             id="projects"
             ref={sectionRef}
             className="bg-linear-to-b from-[#d7d1c9] via-[#e8e3de] to-[#f3f0ed] relative w-full px-5 py-10 mb-40"
         >
-            {/* Desktop-only cursor follower */}
-            <div
-                ref={cursorRef}
-                className="fixed pointer-events-none z-100 hidden md:block"
-                style={{
-                    top: 0,
-                    left: 0,
-                    width: "230px",
-                    height: "155px",
-                    borderRadius: "10px",
-                    overflow: "hidden",
-                    transform: "translate(-50%, -50%) scale(0.7)",
-                    opacity: 0,
-                    boxShadow: "0 24px 64px rgba(61,50,40,0.22)",
-                }}
-            >
-                <img
-                    ref={cursorImgRef}
-                    src=""
-                    alt=""
-                    className="w-full h-full object-cover"
-                />
-            </div>
-
             <div className="overflow-hidden">
                 <h2 className="projects-title mt-20 md:mt-32 mb-16 text-7xl md:text-[16vw] lg:text-[10vw] leading-none text-center font-modern-negra tracking-[-0.02em]">
                     PROJECTS
@@ -181,26 +116,14 @@ const Projects = () => {
                         <div
                             className="row-header flex items-center justify-between py-5 sm:py-7 cursor-pointer select-none group"
                             onClick={() => handleRowClick(index)}
-                            onMouseEnter={() => handleRowMouseEnter(index)}
-                            onMouseLeave={handleRowMouseLeave}
                         >
+                            <img src="/svg/sparkle-black.svg" alt="black sparkle" className="sparkle w-7 h-7" />
                             <div className="flex items-baseline gap-4 sm:gap-8 min-w-0">
-                                <span className="font-modern-negra text-xs sm:text-sm text-[#3d3228]/30 shrink-0 w-6 sm:w-8 tabular-nums">
-                                    {String(index + 1).padStart(2, "0")}
-                                </span>
                                 <span className="font-modern-negra text-xl sm:text-3xl md:text-4xl lg:text-5xl tracking-tight transition-transform duration-300 group-hover:translate-x-1.5 truncate">
                                     {project.name.toUpperCase()}
                                 </span>
                             </div>
-
-                            <div className="flex items-center gap-3 sm:gap-6 shrink-0 ml-3">
-                                <span className="hidden lg:block font-sans text-[10px] tracking-[0.2em] text-[#3d3228]/40 uppercase whitespace-nowrap">
-                                    {project.stack.slice(0, 2).join(" · ")}
-                                </span>
-                                <div className="plus-icon w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-[#3d3228]/25 flex-center text-sm text-[#3d3228]/50 shrink-0 transition-colors duration-300 group-hover:border-[#3d3228]/50">
-                                    +
-                                </div>
-                            </div>
+                            <img src="/svg/sparkle-black.svg" alt="black sparkle" className="sparkle w-7 h-7" />
                         </div>
 
                         <div
