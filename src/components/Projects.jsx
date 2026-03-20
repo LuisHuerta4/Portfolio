@@ -60,7 +60,7 @@ const Projects = () => {
         gsap.fromTo(
             detailLines,
             { opacity: 0, y: 28 },
-            { opacity: 1, y: 0, duration: 0.65, stagger: 0.13, ease: "expo.out", delay: 0.38 }
+            { opacity: 1, y: 0, duration: 0.65, stagger: 0.2, ease: "expo.out", delay: 0.6 }
         );
     };
 
@@ -156,14 +156,26 @@ const Projects = () => {
                                         ))}
                                     </div>
 
-                                    <a
-                                        href={project.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="detail-line self-start inline-flex items-center gap-2 font-sans text-xs tracking-[0.15em] uppercase text-[#3d3228] border border-[#3d3228]/30 px-6 py-3 rounded-full transition-all duration-300 hover:bg-[#3d3228] hover:text-[#f3f0ed]"
-                                    >
-                                        View Project <span className="text-base">↗</span>
-                                    </a>
+                                    <div className="detail-line flex gap-3">
+                                        {project.url && (
+                                            <a
+                                                href={project.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="self-start inline-flex items-center gap-2 font-sans text-xs tracking-[0.15em] uppercase text-[#3d3228] border border-[#3d3228]/30 px-6 py-3 rounded-full transition-all duration-300 hover:bg-[#3d3228] hover:text-[#f3f0ed]"
+                                            >
+                                                View Project <span className="text-base">↗</span>
+                                            </a>
+                                        )}
+                                        <a
+                                            href={project.github}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="self-start inline-flex items-center gap-2 font-sans text-xs tracking-[0.15em] uppercase text-[#3d3228] border border-[#3d3228]/30 px-6 py-3 rounded-full transition-all duration-300 hover:bg-[#3d3228] hover:text-[#f3f0ed]"
+                                        >
+                                            GitHub <span className="text-base">↗</span>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
