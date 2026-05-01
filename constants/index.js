@@ -121,6 +121,16 @@ const projects = [
         stack: ["React", "Typescript", "Node.js", "TailwindCSS", "Zustand", "JS", "Puter"],
         description: "A web application that helps job seekers improve their resumes by providing AI-powered, job-specific feedback. Users can upload their resumes, enter job details, and instantly receive ATS scores, strengths, weaknesses, and tailored suggestions for improvement.",
     },
+    {
+        id: "project-5",
+        name: "Tennis Landing Page",
+        image: "/images/Project-Tennis-Landing_page.png",
+        url: "https://w-tennis-rackets.vercel.app/",
+        github: "https://github.com/LuisHuerta4/Tennis-Landing-Page",
+        title: "Tennis Landing Page",
+        stack: ["React", "Three.js", "GSAP", "TailwindCSS"],
+        description: "An immersive, scroll-driven product landing page for the Wilson tennis racket Performance Series. It showcases the Wilson Blade 98 and Performance Series racket lineup through a cinematic, interactive experience. As users scroll through the page, a 3D tennis racket model animates in real-time,repositioning, rotating, and scaling across each section.",
+    },
 ];
 
 export {
