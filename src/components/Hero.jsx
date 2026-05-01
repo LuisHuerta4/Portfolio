@@ -73,10 +73,10 @@ const Hero = () => {
         <section id="home" className="hero-bg w-full min-h-screen relative pt-20 bg-[#f3f0ed] overflow-hidden">
             {/* Stars */}
             <div className="star-container absolute -translate-y-1/2 flex">
-                <img src="/svg/star-blue.svg" className="star" alt="blue star" />
-                <img src="/svg/star-orange.svg" className="star" alt="orange star" />
-                <img src="/svg/star-pink.svg" className="star" alt="pink star" />
-                <img src="/svg/star-yellow.svg" className="star" alt="yellow star" />
+                <img src="/icons/blue-glossy-star.png" className="star" alt="blue star" />
+                <img src="/icons/orange-glossy-star.png" className="star" alt="orange star" />
+                <img src="/icons/pink-glossy-star.png" className="star" alt="pink star" />
+                <img src="/icons/yellow-glossy-star.png" className="star" alt="yellow star" />
             </div>
 
             {/* Hero text */}
