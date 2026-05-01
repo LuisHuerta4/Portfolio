@@ -131,9 +131,44 @@ const About = () => {
       ease: "sine.inOut",
     });
 
+    // Sparkle hover rotation
+    const sparkles = sectionRef.current.querySelectorAll(".sparkle");
+    const sparkleCleanups = [];
+
+    sparkles.forEach((sparkle) => {
+      let rotationTween = null;
+
+      const onEnter = () => {
+        if (rotationTween) rotationTween.kill();
+        rotationTween = gsap.to(sparkle, {
+          rotation: "+=360",
+          duration: 3,
+          repeat: -1,
+          ease: "none",
+        });
+      };
+
+      const onLeave = () => {
+        if (rotationTween) {
+          rotationTween.kill();
+          rotationTween = null;
+        }
+        gsap.to(sparkle, { rotation: 0, duration: 0.5, ease: "power2.out" });
+      };
+
+      sparkle.addEventListener("mouseenter", onEnter);
+      sparkle.addEventListener("mouseleave", onLeave);
+      sparkleCleanups.push(() => {
+        sparkle.removeEventListener("mouseenter", onEnter);
+        sparkle.removeEventListener("mouseleave", onLeave);
+        if (rotationTween) rotationTween.kill();
+      });
+    });
+
     return () => {
       titleSplit.revert();
       paraSplits.forEach((s) => s.revert());
+      sparkleCleanups.forEach((fn) => fn());
     };
   }, []);
 

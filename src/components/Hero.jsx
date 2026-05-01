@@ -60,7 +60,7 @@ const Hero = () => {
 
         gsap.to(".star", {
             rotate: 360,
-            duration: 6,
+            duration: 10,
             ease: "none",
             repeat: -1,
             delay: 1.5,
