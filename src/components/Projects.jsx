@@ -117,13 +117,13 @@ const Projects = () => {
                             className="row-header flex items-center justify-between py-5 sm:py-7 cursor-pointer select-none group"
                             onClick={() => handleRowClick(index)}
                         >
-                            <img src="/svg/sparkle-black.svg" alt="black sparkle" className="sparkle w-7 h-7" />
+                            <img src="/icons/glossy-sparkle.png" alt="black sparkle" className="sparkle w-13 h-13" />
                             <div className="flex items-baseline gap-4 sm:gap-8 min-w-0">
                                 <span className="font-modern-negra text-xl sm:text-3xl md:text-4xl lg:text-5xl tracking-tight transition-transform duration-300 group-hover:translate-x-1.5 truncate">
                                     {project.name.toUpperCase()}
                                 </span>
                             </div>
-                            <img src="/svg/sparkle-black.svg" alt="black sparkle" className="sparkle w-7 h-7" />
+                            <img src="/icons/glossy-sparkle.png" alt="black sparkle" className="sparkle w-13 h-13" />
                         </div>
 
                         <div

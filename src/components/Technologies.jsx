@@ -140,15 +140,13 @@ const Technologies = () => {
                             key={tech.name}
                             className={`tech-card-${i} relative h-32 sm:h-36 md:h-40 flex-center flex-col gap-2 sm:gap-3`}
                         >
-                            <svg
+                            <img
+                                src={tech.star}
                                 width="120"
                                 height="120"
-                                viewBox="0 0 300 300"
                                 className={`tech-shape-${i} transition-transform absolute w-[90px] h-[90px] sm:w-[120px] sm:h-[120px] md:w-[145px] md:h-[145px]`}
-                                style={{ fill: tech.color }}
                             >
-                                <path d="M150 20c7 0 13 4 16 11l23 58 63 4c7 1 13 6 15 13s0 14-6 19l-52 39 19 61c2 7 0 15-6 20s-14 5-20 1l-52-35-52 35c-6 4-14 4-20-1s-8-13-6-20l19-61-52-39c-6-5-9-12-6-19s8-12 15-13l63-4 23-58c3-7 9-11 16-11z" />
-                            </svg>
+                            </img>
 
                             <img
                                 src={tech.icon}

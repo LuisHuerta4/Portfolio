@@ -131,9 +131,44 @@ const About = () => {
       ease: "sine.inOut",
     });
 
+    // Sparkle hover rotation
+    const sparkles = sectionRef.current.querySelectorAll(".sparkle");
+    const sparkleCleanups = [];
+
+    sparkles.forEach((sparkle) => {
+      let rotationTween = null;
+
+      const onEnter = () => {
+        if (rotationTween) rotationTween.kill();
+        rotationTween = gsap.to(sparkle, {
+          rotation: "+=360",
+          duration: 3,
+          repeat: -1,
+          ease: "none",
+        });
+      };
+
+      const onLeave = () => {
+        if (rotationTween) {
+          rotationTween.kill();
+          rotationTween = null;
+        }
+        gsap.to(sparkle, { rotation: 0, duration: 0.5, ease: "power2.out" });
+      };
+
+      sparkle.addEventListener("mouseenter", onEnter);
+      sparkle.addEventListener("mouseleave", onLeave);
+      sparkleCleanups.push(() => {
+        sparkle.removeEventListener("mouseenter", onEnter);
+        sparkle.removeEventListener("mouseleave", onLeave);
+        if (rotationTween) rotationTween.kill();
+      });
+    });
+
     return () => {
       titleSplit.revert();
       paraSplits.forEach((s) => s.revert());
+      sparkleCleanups.forEach((fn) => fn());
     };
   }, []);
 
@@ -177,21 +212,21 @@ const About = () => {
 
           <div className="lg:col-span-5 space-y-14">
             <div className="about-info-row flex items-center gap-4">
-              <img src="/svg/sparkle-pink.svg" alt="pink sparkle" className="sparkle w-20" />
+              <img src="/icons/Sparkle-pink.png" alt="pink sparkle" className="sparkle w-30" />
               <p className="font-sans text-base tracking-wide">
                 Location - <span className="font-medium italic">Rialto, California</span>
               </p>
             </div>
 
             <div className="about-info-row flex items-center gap-4">
-              <img src="/svg/sparkle-blue.svg" alt="blue sparkle" className="sparkle w-20" />
+              <img src="/icons/Sparkle-blue.png" alt="blue sparkle" className="sparkle w-30" />
               <p className="font-sans text-base tracking-wide">
                 Education - <span className="font-medium italic">B.S. Computer Science, UCR</span>
               </p>
             </div>
 
             <div className="about-info-row flex items-center gap-10 pt-6">
-              <img src="/svg/sparkle-yellow.svg" alt="yellow sparkle" className="sparkle w-20" />
+              <img src="/icons/Sparkle-yellow.png" alt="yellow sparkle" className="sparkle w-30" />
               <a href="https://www.linkedin.com/in/luis-huerta-859b54332/" aria-label="LinkedIn" target="_blank" className="hover:opacity-70 transition">
                 <img src="/svg/linkedin-icon.svg" alt="" className="w-8 h-8 transition-transform duration-300 hover:scale-150" />
               </a>

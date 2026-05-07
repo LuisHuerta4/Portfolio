@@ -71,12 +71,12 @@ html, body {
                 sm:w-40 
                 md:w-45 
                 lg:w-65 
-                xl:w-60 
-                2xl:w-70 
+                xl:w-57 
+                2xl:w-75 
                 -mr-20
                 sm:-mr-25 
                 md:-mr-30 
-                lg:-mr-40 
+                lg:-mr-37 
                 2xl:-mr-45;
         }
     }

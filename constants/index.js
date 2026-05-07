@@ -21,61 +21,73 @@ const techList = [
     {
         name: "React",
         color: "#53c1de",
+        star: "/icons/tech/Tech-react.png",
         icon: "/svg/react-icon.svg",
     },
     {
         name: "JavaScript",
         color: "#FFE55E",
+        star: "/icons/tech/Tech-javascript.png",
         icon: "/svg/javascript-icon.svg",
     },
     {
         name: "HTML",
         color: "#e44d26",
+        star: "/icons/tech/Tech-html.png",
         icon: "/svg/html-icon.svg",
     },
     {
         name: "CSS",
         color: "#1172b8",
+        star: "/icons/tech/Tech-css.png",
         icon: "/svg/css-icon.svg",
     },
     {
         name: "MongoDB",
         color: "#449d46",
+        star: "/icons/tech/Tech-mongodb.png",
         icon: "/svg/mongo-icon.svg",
     },
     {
         name: "TailwindCSS",
         color: "#38b2ac",
+        star: "/icons/tech/Tech-tailwindcss.png",
         icon: "/svg/tailwind-icon.svg",
     },
     {
         name: "Typescript",
         color: "#3178c6",
+        star: "/icons/tech/Tech-typescript.png",
         icon: "/svg/typescript-icon.svg",
     },
     {
         name: "Node.js",
         color: "#8cc84b",
+        star: "/icons/tech/Tech-node.png",
         icon: "/svg/node-icon.svg",
     },
     {
         name: "Postgres",
         color: "#336791",
+        star: "/icons/tech/Tech-postgres.png",
         icon: "/svg/postgres-icon.svg",
     },
     {
         name: "GSAP",
         color: "#1ac44a",
+        star: "/icons/tech/Tech-gsap.png",
         icon: "/svg/gsap-icon.jpg",
     },
     {
         name: "Git",
         color: "#de4c36",
+        star: "/icons/tech/Tech-git.png",
         icon: "/svg/git-icon.svg",
     },
     {
         name: "C++",
         color: "#5c8dbc",
+        star: "/icons/tech/Tech-C++.png",
         icon: "/svg/C++-icon.svg",
     },
 ];
